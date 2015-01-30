@@ -1,0 +1,9 @@
+# You may use any basic OS image
+FROM ubuntu:14.04
+MAINTAINER Mayoi Hachikuji "mendor@yuuzukiyo.net"
+
+# Install additional packages
+RUN apt-get -y install zsh vim
+
+# Please leave an empty line at the end of this file, the new users will be added there
+
