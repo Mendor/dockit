@@ -4,7 +4,7 @@ Just-for-fun implementation of the shell access service based on unique Docker c
 
 All the commands should be run under root system account.
 ```shell
-apt-get install docker.io git
+apt-get install docker.io git sudo
 cd /root
 git clone https://github.com/Mendor/dockit.git dockit
 cd dockit
@@ -12,6 +12,11 @@ cp Dockerfile.source /etc/
 ln -s /etc/Dockerfile.source Dockerfile
 cp dockit.sh /usr/local/bin/dockit
 chmod 755 /usr/local/bin/dockit
+```
+
+And add the followinf line to ``sudoers`` file using ``visudo``:
+```
+%users  ALL=(ALL) NOPASSWD: /usr/bin/docker
 ```
 
 ## Operation
@@ -24,6 +29,8 @@ To add new user named *unknown*:
 If you need to provide the other shell except bash for the specific user, edit ``Dockerfile``.
 
 Unfortunately, the option ``--ephemeral`` to run self-destructing containers has been removed from Docker, so you need to use ``graveyard.sh`` script to delete the containers left from the previous sessions. May be added to the ``crontab`` file to apply cleaning on schedule.
+
+To change the software list provided with the every container edit ``/etc/Dockerfile.source`` file.
 
 ## Does it work?
 
